@@ -1,7 +1,20 @@
 .fs-16 {
     font-size: 16pt;
+    font-weight: bold;
+    color: #6c757d;
+    font-family: Arial, Helvetica;
 }
 
 a {
     cursor: pointer;
+    color: #6c757d;
+}
+
+a:hover {
+    color: #a2c7e7;
+}
+
+.fa {
+    font-size: 16pt;
+    display: inline-block;
 }
