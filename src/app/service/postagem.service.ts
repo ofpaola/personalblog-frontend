@@ -9,6 +9,8 @@ import { Postagem } from '../model/postagem';
 })
 export class PostagemService {
 
+  baseUrl = environment.server + environment.port
+
   constructor(private http: HttpClient) {}
    
   token = {
@@ -16,10 +18,22 @@ export class PostagemService {
   }
 
   getAllPostagens(): Observable<Postagem[]>{
-    return this.http.get<Postagem[]>('http://localhost:8080/postagens', this.token)
+    return this.http.get<Postagem[]>(`${this.baseUrl}/postagens`, this.token)
+  }
+
+  getByIdPostagem(id: number): Observable<Postagem> {
+    return this.http.get<Postagem>(`${this.baseUrl}/postagens/${id}`, this.token)
   }
 
   postPostagem(postagem: Postagem): Observable<Postagem> {
-    return this.http.post<Postagem>('http://localhost:8080/postagens', postagem, this.token)
+    return this.http.post<Postagem>(`${this.baseUrl}/postagens`, postagem, this.token)
+  }
+
+  putPostagem(postagem: Postagem): Observable<Postagem> {
+    return this.http.put<Postagem>(`${this.baseUrl}/postagens`, postagem, this.token)
+  }
+
+  deletePostagem(id: number) {
+    return this.http.delete(`${this.baseUrl}/postagens/${id}`, this.token)
   }
 }
